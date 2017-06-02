@@ -1,10 +1,14 @@
 
-const userContentElement = ".userContentWrapper, .fbUserContent";
+const userContentElement = "[id*='hyperfeed_story_id']";
 const facebook_outbound_link = "https://l.facebook.com/l.php?u=";
 const facebook_individual_post_string = "/posts/";
 const whitelist_sites = ["instagram"]
 const banned_words = ["trump",
                     "obama",
+                    "clinton",
+                    "pence",
+                    "le pen",
+                    "macron",
                     "congress",
                     "senate",
                     "supreme court",
@@ -14,9 +18,9 @@ const banned_words = ["trump",
                     "election",
                     "vote",
                     "protest",
-                    "pence",
                     "terror",
-                    "shooting"]
+                    "shooting",
+                    "politics"]
 
 
 var filter = function (node) {
@@ -41,7 +45,6 @@ var filter = function (node) {
     }
 
     if (!facebook_internal) {
-        //node.style.backgroundColor = "salmon";
         node.parentNode.removeChild(node);
     }
 
@@ -56,7 +59,6 @@ var filter = function (node) {
     }
 
     if (contains_banned_word) {
-        //node.style.backgroundColor = "#ADD8E6";
         node.parentNode.removeChild(node);
     }
 }
@@ -78,4 +80,4 @@ var eradicateRetry = setInterval(function(){
         cleanNewsFeed();
 
         //clearInterval(eradicateRetry);
-}, 1000);
+}, 500);
